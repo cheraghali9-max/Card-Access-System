@@ -1,6 +1,6 @@
 
 PROG = main.exe 
-SRC = main.c funk1.c funk2.c
+SRC = main.c saveinput.c menu.c 
 CFLAGS=-Wall -Werror -g
 LIBS = 
 all: $(PROG)
