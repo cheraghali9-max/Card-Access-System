@@ -15,13 +15,11 @@ extern Card *cards;
 extern int cardCount;
 
 
-void PrintMenu();
-void RemoteOpenDoor();
-void ListAllCards();
-void AddAndRemoveCards();
-void ExittheProgram();
-void ScanFakeCards();
-
-
+void PrintMenu(void);
+void RemoteOpenDoor(void);
+void ListAllCards(void);
+void AddAndRemoveCards(void);
+void ExittheProgram(void);
+void ScanFakeCards(void);
 
 #endif
