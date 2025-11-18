@@ -45,7 +45,7 @@ void PrintMenu() {
         if (!GetInputInt("Enter a Card Number:",&enterCard))
         break;
 
-        bool foundCard = true;
+        bool foundCard = false;
         for (int i = 0; i < cardCount; i++)
         {
             if (cards[i].cardNumber == enterCard)
@@ -59,7 +59,7 @@ void PrintMenu() {
             }
             
         }
-        break;
+        
 
         if (!foundCard)
         {
@@ -70,6 +70,7 @@ void PrintMenu() {
         } else{
             printf("Please scan a card ");
         }
+        break;
         
        
         
@@ -77,21 +78,27 @@ void PrintMenu() {
         
 
     case 2:
-        ListAllCards();
-        if (cardCount == 0)
+        ListAllCards(); 
+             if (cardCount == 0)
         {
             // When pressing the choice 2. no message that the system is empty
             printf("No card found in the system\n");
-             break;
-        } else{
+            break;
+
+        } 
+        else
+        {
        printf("List of Cards\n");
        for (int i = 0; i < cardCount; i++)
        {
         printf("%d.Name:%s | | | Card Number:%d\n", i + 1, cards[i].name, cards[i].cardNumber);
-         break;
+         
        }
 
         }
+
+        }
+       
        
       
        
@@ -132,14 +139,15 @@ void PrintMenu() {
         ExittheProgram();
         printf("Exitting the program........");
         return;
-        
+        break;
     
     case 5:
-        ScanFakeCards();
+      {
         int enterCardNumber;
         //if (!getinputint)????????
-        if(GetInputInt("Enter card number to check", &enterCardNumber))
-        break;
+        if(!GetInputInt("Enter card number to check", &enterCardNumber))
+        printf("Please enter a valid number:\n");
+        
 
         bool foundFakeCard = true;
         for (int i = 0; i < cardCount; i++) {
@@ -149,6 +157,7 @@ void PrintMenu() {
                 foundFakeCard = true;
                 break;
             }
+        
 
         } if (foundFakeCard){
             printf("The card exist in the system");
@@ -156,18 +165,20 @@ void PrintMenu() {
         } else {
             printf("FAKE CARD. No such card in system");
         break;
+         default:
+        printf("ERROR: select correctly\n");
+        break;
 
         }
         
     
         }
-    default:
-        printf("ERROR: select correctly\n");
-        break;
+    
     }
+   
 }
     
-}
+
 
 
 //====================//
@@ -183,6 +194,20 @@ void addCard() {
     if (!GetInputInt("Enter card number: ", &cardNum))
         return;
 
+        // //Duplicate checking
+        // for (int i = 0; i < cardCount; i++)
+        // {
+        //     if (cards[i].cardNumber == cardNum);
+        //     {
+        //         printf("The Card already exist in the system\n");
+        //         return;
+        //     }
+            
+        // }
+        
+
+        
+
     Card *temp = realloc(cards, (cardCount + 1) * sizeof(Card));
     if (temp == NULL) {
         printf("ERROR: Failed to allocate memory!");
@@ -194,14 +219,14 @@ void addCard() {
     cards[cardCount].cardNumber = cardNum;
     cardCount++;
 
-    printf("Card added to the system: %s\n", name);
+    printf("Card added to the system: %s %d\n",name, cardNum);
 }
 
 
 //===============///
 void removeCard() {
     if (cardCount == 0) {
-        printf("No cards to remove.");
+        printf("No cards to remove."); // Does't show on the meny
         return;
     }
 
@@ -218,7 +243,7 @@ void removeCard() {
     }
 
     if (foundCard == -1) {
-        printf("Card not found.");
+        printf("Card not found:\n");
         return;
     }
 
@@ -227,7 +252,7 @@ void removeCard() {
     }
     cardCount--;
 
-    if (cardCount == 0) {
+    if (cardCount == 0) { 
         free(cards);
         cards = NULL;
     } else {
@@ -239,6 +264,8 @@ void removeCard() {
 
     printf("Card number %d removed from the system.\n", cardNumber);
 }
+
+
 void RemoteOpenDoor(void) {
     printf("Remote open door\n");
 }
