@@ -26,4 +26,5 @@ What I learn from this first C project?
 - Menu-based program design
 - Input validation without scanf
 
+Further development
 - A few more features is going to be add soon. 
